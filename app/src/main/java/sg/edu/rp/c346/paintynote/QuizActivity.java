@@ -107,7 +107,7 @@ public class QuizActivity extends AppCompatActivity {
                 if(mAnswer == false) {
                     mScore++;
                     updateScore(mScore);
-
+                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_LONG).show();
                     //perform check before you update the question
                     if (mQuestionNumber == questions.length) {
                         Intent i = new Intent(QuizActivity.this, ResultsActivity.class);
@@ -121,6 +121,7 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 }
                 else {
+                    Toast.makeText(getApplicationContext(), "Wrong!", Toast.LENGTH_LONG).show();
                     if (mQuestionNumber == questions.length) {
                         Intent i = new Intent(QuizActivity.this, ResultsActivity.class);
                         Bundle bundle = new Bundle();
