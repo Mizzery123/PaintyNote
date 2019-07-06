@@ -1,8 +1,11 @@
 package sg.edu.rp.c346.paintynote.view;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView noNotesView, tvTitle;
 
     private DatabaseHelper db;
+    int num=0;
 
     ImageButton btnVoice;
 
@@ -125,6 +129,12 @@ tvTitle.setText(intentReceived.getStringExtra("param"));
 
 
         if (intent.resolveActivity(getPackageManager()) != null) {
+            num++;
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor prefEdit = prefs.edit();
+            prefEdit.putInt("number", num);
+            prefEdit.commit();
+
             startActivityForResult(intent, 10);
         } else {
             Toast.makeText(this, "Your Device Don't Support Speech Input", Toast.LENGTH_SHORT).show();
@@ -139,7 +149,12 @@ tvTitle.setText(intentReceived.getStringExtra("param"));
             case 10:
                 if (resultCode == RESULT_OK && data != null) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    createNote("Test",result.get(0));
+
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+                    int nums = prefs.getInt("number", 0);
+
+
+                    createNote("Voice Note " + nums ,result.get(0));
                 }
                 break;
         }
