@@ -1,9 +1,12 @@
 package sg.edu.rp.c346.paintynote;
 
 import android.animation.ArgbEvaluator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +18,14 @@ public class StartActivity extends AppCompatActivity {
     List<Model> models;
     Integer[] colors = null;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+    Button btnPuzzle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        btnPuzzle = findViewById(R.id.btnPuzzle);
 
         models = new ArrayList<>();
         models.add(new Model(R.drawable.note, "Create Your Own Notes!", "Werewolf Online can be a tricky and complicating game. Make your own notes now!"));
@@ -72,6 +78,9 @@ public class StartActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
     }
 }
