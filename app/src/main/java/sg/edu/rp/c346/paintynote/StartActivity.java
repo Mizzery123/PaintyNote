@@ -18,14 +18,14 @@ public class StartActivity extends AppCompatActivity {
     List<Model> models;
     Integer[] colors = null;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
-    Button btnPuzzle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        btnPuzzle = findViewById(R.id.btnPuzzle);
+
 
         models = new ArrayList<>();
         models.add(new Model(R.drawable.note, "Create Your Own Notes!", "Werewolf Online can be a tricky and complicating game. Make your own notes now!"));
